@@ -18,7 +18,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(){}
 
   login() {
-    this.userService.login(this.credentials);
+    this.userService.login(this.credentials).subscribe(res => {
+      if(this.userService.authenticated){
+        this.router.navigateByUrl('/home');
+      }
+    });
   }
-
 }
