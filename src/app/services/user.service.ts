@@ -1,10 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { API_CONST} from '../constants/app.constants';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders,} from '@angular/common/http';
+import {EndPoints} from '../consts/EndPoints';
 
 @Injectable({
   providedIn: 'root'
@@ -12,33 +8,33 @@ import { API_CONST} from '../constants/app.constants';
 export class UserService {
 
   authenticated = false;
+  isLoggedIn = false;
   private url: string;
-  
+  public username: String;
+  public password: String;
+  private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: HttpClient, private router: Router) {
-    
+  constructor(private http: HttpClient) {
+    this.url = EndPoints.ROOT_URL;
   }
 
 
-  login (credentials: any){
-    
-    let options = {
+  login(credentials: any) {
+    const options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    }
+    };
+
+
     const data =
-        'username=' +
-        encodeURIComponent(credentials.username) +
-        '&password=' +
-        encodeURIComponent(credentials.password) + '&submit=Login';
-    return this.http.post<Observable<boolean>>(API_CONST + "login", data, options)
-    .pipe(
-      tap(() => this.authenticated = true)
-    );
+      'username=' +
+      encodeURIComponent(credentials.username) +
+      '&password=' +
+      encodeURIComponent(credentials.password) + '&submit=Login';
+    this.http.post(EndPoints.LOGIN_URL, data, options)
+      .subscribe(
+        res => console.log(res)
+      );
   }
 
-  logout() {
-    this.authenticated = false;
-    this.router.navigateByUrl('/login');
-    location.reload(true);
-  }
 }
+

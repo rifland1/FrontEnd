@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { HttpClient } from '@angular/common/http';
-import { API_CONST} from '../constants/app.constants';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../services/user.service';
+import {HttpClient} from '@angular/common/http';
+import {EndPoints} from '../consts/EndPoints';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +14,14 @@ export class HomeComponent implements OnInit {
   user = {};
 
   constructor(private userService: UserService, private http: HttpClient) {
-    http.get(API_CONST + 'resource').subscribe(data => this.user = data);
+    http.get(EndPoints.RESOURCE_URL).subscribe(data => this.user = data);
   }
 
-  ngOnInit(){}
+  ngOnInit() {
+  }
 
-  authenticated() { return this.userService.authenticated; }
+  authenticated() {
+    return this.userService.authenticated;
+  }
 
 }
