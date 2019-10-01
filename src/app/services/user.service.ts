@@ -15,16 +15,15 @@ export class UserService {
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {
-    this.url = EndPoints.ROOT_URL;
   }
 
 
   login(credentials: any) {
-    const options = {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    };
-
-
+    debugger;
+    const OPTIONS = {
+        headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      }
+    ;
     const data =
       'username=' +
       encodeURIComponent(credentials.username) +
@@ -35,6 +34,5 @@ export class UserService {
         res => console.log(res)
       );
   }
-
 }
 

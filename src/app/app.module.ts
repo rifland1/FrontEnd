@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { UserService } from '../app/services/user.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ErrorHttpInterceptor } from './interceptors/ErrorHttpInterceptor';
+import { XhrInterceptor } from './interceptor/XhrInterceptor.interceptor';
 
 
 
@@ -27,7 +27,7 @@ import { ErrorHttpInterceptor } from './interceptors/ErrorHttpInterceptor';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: ErrorHttpInterceptor, multi: true }],
+  providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
