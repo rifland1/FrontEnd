@@ -10,8 +10,8 @@ export class UserService {
   authenticated = false;
   isLoggedIn = false;
   private url: string;
-  public username: String;
-  public password: String;
+  public username: string;
+  public password: string;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {
@@ -30,7 +30,7 @@ export class UserService {
       encodeURIComponent(credentials.username) +
       '&password=' +
       encodeURIComponent(credentials.password) + '&submit=Login';
-    this.http.post(EndPoints.LOGIN_URL, data, options)
+    this.http.post(EndPoints.LOGIN_URL, data, OPTIONS)
       .subscribe(
         res => console.log(res)
       );
