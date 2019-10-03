@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import { UserService } from '../app/services/user.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { XhrInterceptor } from './interceptor/XhrInterceptor.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import  {ErrorHttpInterceptor } from '../app/interceptors/errorHttpInterceptor.interceptor';
 
 
 
@@ -18,16 +20,19 @@ import { XhrInterceptor } from './interceptor/XhrInterceptor.interceptor';
     AppComponent,
     HomeComponent,
     LoginComponent
-    
-    
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
-  providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  //providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
+  providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: ErrorHttpInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

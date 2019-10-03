@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import {EndPoints} from './consts/EndPoints';
- 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,8 +12,7 @@ import {EndPoints} from './consts/EndPoints';
 })
 export class AppComponent {
 
-  title = 'Demo';
-  greeting = {};
+  title = 'Angular + Spring Sécurité';
 
   constructor(private userService: UserService, private router: Router, private http: HttpClient) {
   }

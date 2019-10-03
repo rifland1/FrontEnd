@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {HttpClient} from '@angular/common/http';
 import {EndPoints} from '../consts/EndPoints';
+import  { Router, ActivatedRoute,ParamMap, RoutesRecognized  } from '@angular/router';
+import { AuthenticationUser } from '../model/authenticationuser'
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -10,18 +14,13 @@ import {EndPoints} from '../consts/EndPoints';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'Demo';
-  user = {};
+  user: AuthenticationUser;
 
-  constructor(private userService: UserService, private http: HttpClient) {
-    http.get(EndPoints.RESOURCE_URL).subscribe(data => this.user = data);
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-  }
-
-  authenticated() {
-    return this.userService.authenticated;
+    this.user = this.userService.user;
   }
 
 }
