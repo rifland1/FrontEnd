@@ -29,14 +29,10 @@ export class LoginComponent implements OnInit {
         this.userService.getUser().subscribe(res => {
           let array = res['roles'];
           let roles: Array<string> = [];
-          let isAdmin: boolean = false;
           for (let i = 0; i < array.length; i++) {
             roles[i] = array[i]['authority'];
-            if(roles[i] === Roles.Admin){
-              isAdmin = true;
-            }
           }
-          this.userService.user = new AuthenticationUser(res['id'], res['username'], roles, isAdmin);
+          this.userService.user = new AuthenticationUser(res['id'], res['username'], roles);
           let url = this.userService.urlToNavigayte ? this.userService.urlToNavigayte: '/home';
           this.router.navigate([url]);
         });

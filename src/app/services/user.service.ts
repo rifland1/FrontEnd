@@ -44,7 +44,5 @@ export class UserService {
 
   logout() {
     this.authenticated = false;
-    this.router.navigateByUrl('/login');
-    location.reload(true);
   }
 }

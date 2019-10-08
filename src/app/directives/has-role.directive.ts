@@ -10,27 +10,31 @@ import { ViewContainerRef, TemplateRef, Input } from '@angular/core';
 export class HasRoleDirective implements OnInit {
 
   @Input() hasRole: string;
-  user:AuthenticationUser;
-  roles:Array<string>;
+  user: AuthenticationUser;
+  roles: Array<string>;
 
-  constructor(
-    private viewContainerRef: ViewContainerRef,
-    private templateRef: TemplateRef<any>,
-    private userService: UserService
-  ) {}
+  constructor(private viewContainerRef: ViewContainerRef,
+              private templateRef: TemplateRef<any>,
+              private userService: UserService) {
+  }
 
   ngOnInit() {
     this.user = this.userService.user;
-    this.roles = this.user.roles;
-    if (!this.roles) {
-      this.viewContainerRef.clear();
-    }
-    else {
-      if (this.roles.includes(this.hasRole)) {
-        this.viewContainerRef.createEmbeddedView(this.templateRef);
+    if (this.user) {
+      this.roles = this.user.roles;
+      if (!this.roles) {
+        this.viewContainerRef.clear();
+      }
+      else {
+        if (this.roles.includes(this.hasRole)) {
+          this.viewContainerRef.createEmbeddedView(this.templateRef);
+        } else {
+          this.viewContainerRef.clear();
+        }
+      }
     } else {
       this.viewContainerRef.clear();
     }
-    }
+
   }
 }

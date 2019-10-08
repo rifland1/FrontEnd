@@ -4,13 +4,11 @@ export class AuthenticationUser {
   id: string;
   username: string;
   roles:Array<string>;
-  isAdmin:boolean;
 
-  constructor(id: string, username: string, roles:Array<string>, isAdmin: boolean) {
+  constructor(id: string, username: string, roles:Array<string>) {
     this.id = id;
     this.username = username;
     this.roles = roles;
-    this.isAdmin = isAdmin;
   }
 
 

@@ -15,6 +15,7 @@ import { ErrorHttpInterceptor } from '../app/interceptors/errorHttpInterceptor.i
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { HasRoleDirective } from '../app/directives/has-role.directive';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 
@@ -26,7 +27,8 @@ import { HasRoleDirective } from '../app/directives/has-role.directive';
     LoginComponent,
     UserComponent,
     AdminComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    AccessDeniedComponent
 
 
   ],

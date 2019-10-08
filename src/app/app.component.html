@@ -6,9 +6,8 @@
     <div style="margin-right: auto">
       <a mat-button [routerLink]="'/home'"> Home </a>
       <a mat-button [routerLink]="'/login'"> Login </a>
-      <a mat-button [routerLink]="'/user'"> User </a>
-      <a mat-button [routerLink]="'/admin'"> Admin </a>
-      <a mat-button [routerLink]="'/restriction'"> Restriction </a>
+      <a mat-button [routerLink]="'/user'" *hasRole="['ADMIN', 'USER']"> User </a>
+      <a mat-button [routerLink]="'/admin'" *hasRole="'ADMIN'"> Admin </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

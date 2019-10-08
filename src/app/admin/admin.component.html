@@ -1,1 +1,17 @@
-<p>admin works!</p>
+<h2 *ngIf="helloAdmin">
+  {{ helloAdmin.data }}
+</h2>
+
+
+<div *ngIf="listUsers.length == 0">
+  <button mat-raised-button color="warn" (click)="getAllUsers()">Liste Utilisateurs</button>
+</div>
+
+<div *ngIf="listUsers.length != 0">
+  <h2> {{ usersTitle }} </h2>
+  <ul>
+    <li *ngFor="let u of listUsers">
+      {{ u.username }}
+    </li>
+  </ul>
+</div>
