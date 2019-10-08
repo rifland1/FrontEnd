@@ -1,8 +1,19 @@
-<div layout="row" layout-align="center center">
-  <h2>{{ title }}</h2>
-
-  <div class="container">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="flex"></span>
+    <h1>{{ title }}</h1>
+    <span class="flex"></span>
+    <div style="margin-right: auto">
+      <a mat-button [routerLink]="'/home'"> Home </a>
+      <a mat-button [routerLink]="'/login'"> Login </a>
+      <a mat-button [routerLink]="'/user'"> User </a>
+      <a mat-button [routerLink]="'/admin'"> Admin </a>
+      <a mat-button [routerLink]="'/restriction'"> Restriction </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div>
+  <div>
     <router-outlet></router-outlet>
   </div>
 </div>
-

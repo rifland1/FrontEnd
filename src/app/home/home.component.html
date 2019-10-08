@@ -1,3 +1,10 @@
-<div layout="row" layout-align="center center">
-    Bienvenue {{ user.username }}
+<h2> {{ title }}</h2>
+
+<div *ngIf="user" class="mr-btn">
+  <button mat-raised-button color="primary" *hasRole="'ADMIN'" (click)="goToAdmin()">Page Admin</button>
+  <button mat-raised-button color="accent" (click)="goToUuser()">Page User</button>
+</div>
+
+<div *ngIf="!user">
+  <button mat-raised-button color="warn" (click)="login()">Login</button>
 </div>

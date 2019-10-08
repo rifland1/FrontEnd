@@ -1,13 +1,14 @@
-<div layout="row" layout-align="center center">
-  <form role="form" (submit)="login()">
-    <div class="form-group">
-      <label for="username">Username:</label> <input type="text"
-                                                     class="form-control" id="username" name="username" [(ngModel)]="credentials.username"/>
+<h2> {{ title }}</h2>
+<div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Username" [(ngModel)]="credentials.username">
+          </mat-form-field>
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label> <input type="password"
-                                                     class="form-control" id="password" name="password" [(ngModel)]="credentials.password"/>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="Password" [(ngModel)]="credentials.password">
+          </mat-form-field>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <button type="submit" mat-raised-button color="primary" (click)="login()">Submit</button>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { HttpClient }from '@angular/common/http';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthenticationUser } from '../model/authenticationuser';
+import  { Roles } from '../enum/roles.enum';
 
 
 @Component({
@@ -13,19 +14,31 @@ import { AuthenticationUser } from '../model/authenticationuser';
 export class LoginComponent implements OnInit {
 
   credentials = {username: '', password: ''};
+  title: string;
 
   constructor(private userService: UserService, private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
+    this.title = "Bienvenue sur la page du LOGIN !"
   }
 
   login() {
     this.userService.login(this.credentials).subscribe(res => {
       if (this.userService.authenticated) {
         this.userService.getUser().subscribe(res => {
-          this.userService.user = new AuthenticationUser(res['id'], res['username']);
-          this.router.navigate(['/home']);
+          let array = res['roles'];
+          let roles: Array<string> = [];
+          let isAdmin: boolean = false;
+          for (let i = 0; i < array.length; i++) {
+            roles[i] = array[i]['authority'];
+            if(roles[i] === Roles.Admin){
+              isAdmin = true;
+            }
+          }
+          this.userService.user = new AuthenticationUser(res['id'], res['username'], roles, isAdmin);
+          let url = this.userService.urlToNavigayte ? this.userService.urlToNavigayte: '/home';
+          this.router.navigate([url]);
         });
       }
     });
@@ -36,5 +49,4 @@ export class LoginComponent implements OnInit {
       console.log(result);
     }, error => console.error(error));
   }
-
 }

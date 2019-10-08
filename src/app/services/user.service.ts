@@ -14,6 +14,8 @@ export class UserService {
 
   authenticated = false;
   user: AuthenticationUser;
+  //redirect user to this url after login
+  urlToNavigayte: string;
 
   constructor(private http: HttpClient, private router: Router) {
 

@@ -10,7 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import  {ErrorHttpInterceptor } from '../app/interceptors/errorHttpInterceptor.interceptor';
+import { MatToolbarModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule } from  '@angular/material';
+import { ErrorHttpInterceptor } from '../app/interceptors/errorHttpInterceptor.interceptor';
+import { UserComponent } from './user/user.component';
+import { AdminComponent } from './admin/admin.component';
+import { HasRoleDirective } from '../app/directives/has-role.directive';
 
 
 
@@ -19,7 +23,10 @@ import  {ErrorHttpInterceptor } from '../app/interceptors/errorHttpInterceptor.i
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
+    AdminComponent,
+    HasRoleDirective
 
 
   ],
@@ -29,7 +36,12 @@ import  {ErrorHttpInterceptor } from '../app/interceptors/errorHttpInterceptor.i
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   //providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true }],
   providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: ErrorHttpInterceptor, multi: true },],
