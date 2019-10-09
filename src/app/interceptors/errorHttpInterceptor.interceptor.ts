@@ -27,6 +27,12 @@ export class ErrorHttpInterceptor implements HttpInterceptor {
         this.userService.logout();
         this.router.navigate(['/login']);
       }
+      if(err.status === 404) {
+        this.router.navigate(['/not-found']);
+      }
+      if(err.status === 403) {
+        this.router.navigate(['/access-denied']);
+      }
       return throwError(err);
     }))
   }

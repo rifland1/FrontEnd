@@ -1,0 +1,15 @@
+<div class="mon-dialog">
+    <h1 mat-dialog-title>Détails Utilisateur</h1>
+<div mat-dialog-content>
+  
+  <h4>ID: {{ data.user.id }}</h4>
+  <h4>USERNAME: {{ data.user.username }}</h4>
+  <div>
+    <h4 class="sameline">Rôles: </h4>
+    <ul class="sameline">
+        <li class="sameline" *ngFor="let r of data.user.roles"> {{ r.authority }}</li>
+    </ul>
+  </div>
+  
+</div>
+</div>

@@ -1,0 +1,16 @@
+.mon-dialog {
+    width: 350px;
+    height: 350px
+}
+
+.sameline {
+    h4, ul {
+        float: left;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        list-style-type: disc;
+    }
+}
+

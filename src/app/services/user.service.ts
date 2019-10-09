@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { EndPoints } from '../consts/EndPoints';
 import  { AuthenticationUser } from '../model/authenticationuser';
@@ -12,7 +12,7 @@ import  { AuthenticationUser } from '../model/authenticationuser';
 })
 export class UserService {
 
-  authenticated = false;
+  loggedIn: boolean;
   user: AuthenticationUser;
   //redirect user to this url after login
   urlToNavigayte: string;
@@ -33,7 +33,7 @@ export class UserService {
       encodeURIComponent(credentials.password) + '&submit=Login';
     return this.http.post<Observable<boolean>>(EndPoints.LOGIN_URL, data, options)
       .pipe(
-      tap(() => this.authenticated = true)
+      tap(() => this.loggedIn = true)
     );
   }
 
@@ -43,6 +43,6 @@ export class UserService {
 
 
   logout() {
-    this.authenticated = false;
+    this.loggedIn = false;
   }
 }

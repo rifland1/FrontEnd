@@ -2,7 +2,8 @@
 
 <div *ngIf="user" class="mr-btn">
   <button mat-raised-button color="primary" *hasRole="'ADMIN'" (click)="goToAdmin()">Page Admin</button>
-  <button mat-raised-button color="accent" (click)="goToUuser()">Page User</button>
+  <button mat-raised-button color="accent" (click)="goToUser()">Page User</button>
+  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
 </div>
 
 <div *ngIf="!user">

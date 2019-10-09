@@ -1,8 +1,47 @@
-/* You can add global styles to this file, and also import other style
+@import url(~@angular/material/prebuilt-themes/indigo-pink.css);
+html, body {
+  height: 100%; }
 
-files */
+body {
+  margin: 0;
+  font-family: Roboto, Helvetica, sans-serif; }
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.btn button {
+  margin-right: 8px; }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.flx {
+  flex: 1 1 auto; }
+
+.mrg-r {
+  margin-right: 10px; }
+
+
+.mon-dialog {
+  width: 350px;
+  height: 350px; }
+
+.sameline h4, .sameline ul {
+  float: left;
+  margin: 0;
+  padding: 0; }
+
+.sameline li {
+  list-style-type: none; }
+
+.mr-btn {
+  margin-right: 20px !important; }
+
+
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center; }
+
+.signin-content {
+  padding: 60px 1rem; }
+
+.full-width-input {
+  width: 100%; }
+
+
+

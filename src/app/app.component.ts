@@ -8,7 +8,7 @@ import {EndPoints} from './consts/EndPoints';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
@@ -19,7 +19,7 @@ export class AppComponent {
 
   logout() {
     this.http.post(EndPoints.LOGOUT_URL, {}).pipe(finalize( () => {
-        this.userService.authenticated = false;
+        this.userService.loggedIn = false;
         this.router.navigateByUrl('/login');
     })).subscribe();
   }

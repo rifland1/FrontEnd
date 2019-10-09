@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { AuthenticationUser } from '../model/authenticationuser';
 import { Roles } from '../enum/roles.enum';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +22,20 @@ export class AdminGuard implements CanActivate {
               state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let isAuthorized = false;
     this.user = this.userService.user;
-    if (this.user && this.user.roles) {
-      this.roles = this.user.roles;
-      if (this.roles.includes(Roles.Admin)) {
-        isAuthorized = true;
+    console.log(this.user);
+    if (!this.user) {
+      isAuthorized = false;
+      this.router.navigate(['/login']);
+    }
+    else {
+        this.roles = this.user.roles;
+        if (this.roles && this.roles.includes(Roles.Admin)) {
+          isAuthorized = true;
+        }
+        if (!isAuthorized) {
+          this.router.navigate(['/access-denied']);
+        }
+        return isAuthorized;
       }
     }
-    if (!isAuthorized) {
-      this.router.navigate(['/access-denied']);
-    }
-    return isAuthorized;
-  }
-
 }

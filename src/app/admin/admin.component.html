@@ -9,9 +9,7 @@
 
 <div *ngIf="listUsers.length != 0">
   <h2> {{ usersTitle }} </h2>
-  <ul>
-    <li *ngFor="let u of listUsers">
-      {{ u.username }}
-    </li>
-  </ul>
+  <mat-nav-list role="list">
+    <a mat-list-item role="listitem" *ngFor="let u of listUsers" (click)="openDialog(u)">{{ u.username }}</a>
+  </mat-nav-list>
 </div>

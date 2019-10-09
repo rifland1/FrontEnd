@@ -1,13 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AdminService } from './admin.service';
 import  { AuthenticationUser } from '../model/authenticationuser';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+
+export interface DialogData {
+  user: AuthenticationUser;
+}
+
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
 
@@ -15,7 +22,7 @@ export class AdminComponent implements OnInit {
   helloAdmin: any;
   listUsers: Array<AuthenticationUser> = [];
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, public dialog: MatDialog) {
   }
 
 
@@ -31,4 +38,20 @@ export class AdminComponent implements OnInit {
     this.adminService.getAllUsers().subscribe((res: AuthenticationUser[]) => this.listUsers = res);
   }
 
+  openDialog(u: AuthenticationUser) {
+    this.dialog.open(DialogDataUserDialog, {
+      data: {
+        user: u
+      }
+    });
+  }
+
+}
+
+@Component({
+  selector: 'user-data-dialog',
+  templateUrl: 'dialog-data-user-dialog.html',
+})
+export class DialogDataUserDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 }
