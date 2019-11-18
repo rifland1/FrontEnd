@@ -8,101 +8,51 @@ import { LoginComponent } from '../app/login/login.component';
 import { AdminComponent } from '../app/admin/admin.component';
 import { UserComponent } from '../app/user/user.component';
 import { AccessDeniedComponent } from '../app/access-denied/access-denied.component';
-import { LogoutComponent } from '../app/logout/logout.component';
 import { NotFoundComponent } from '../app/not-found/not-found.component';
 import { AdminGuard } from './guards/admin.guard';
 import { HomeGuard } from './guards/home.guard';
-import { HomeLayoutComponent } from './layouts/home-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout.component';
+import { UserResolverService } from './services/user.resolver.service';
+import { BaseComponent } from './base/base.component';
+import { UserGuard } from './guards/user.guard';
 
 
 const routes: Routes = [
 
-  
-  {
-    path: 'login', component: LoginComponent
-  },
-  {
-    path: '',
-    component: HomeLayoutComponent,
-    children: [
-      {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [AdminGuard]
-      }
-    ]
-  },
-  {
-    path: '',
-    component: HomeLayoutComponent,
-    children: [
-      {
-        path: 'user',
-        component: UserComponent
-      }
-    ]
-  },
-  {
-    path: '',
-    component: HomeLayoutComponent,
-    children: [
-      {
-        path: 'access-denied',
-        component: AccessDeniedComponent
-      }
-    ]
-  },
-  {
-    path: '',
-    component: HomeLayoutComponent,
-    children: [
-      {
-        path: 'logout',
-        component: LogoutComponent
-      }
-    ]
-  },
-  {
-    path: '',
-    component: HomeLayoutComponent,
-    children: [
-      {
-        path: 'not-found',
-        component: NotFoundComponent
-      }
-    ]
-  },
-  {
-    path: '',
-    component: HomeLayoutComponent,
-    canActivate: [HomeGuard],
-    children: [
-      {
-        path: 'home',
-        component: HomeComponent
-      }
-    ]
-  },
-  {
-    path: '',
-    component: LoginLayoutComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent
-      }
-    ]
-  },
-  {
-    path: '**', component: NotFoundComponent
-  }
-
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    {
+        path: '',
+        component: BaseComponent,
+        resolve: {
+            user: UserResolverService
+        },
+        children: [
+            {
+                path: 'home', component: HomeComponent,
+            },
+            {
+                path: 'admin', component: AdminComponent,
+                canActivate: [AdminGuard]
+            },
+            {
+                path: 'user', component: UserComponent,
+                canActivate: [UserGuard]
+            },
+            {
+                path: 'access-denied', component: AccessDeniedComponent
+            }
+        ]
+    },
+    {
+        path: 'login', component: LoginComponent
+    },
+    {
+        path: '**', component: NotFoundComponent
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

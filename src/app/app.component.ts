@@ -1,26 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../app/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import {EndPoints} from './consts/EndPoints';
+import { EndPoints } from './consts/EndPoints';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  title = 'Angular + Spring Sécurité';
 
-  constructor(private userService: UserService, private router: Router, private http: HttpClient) {
+
+  ngOnInit() {
   }
 
-  logout() {
-    this.http.post(EndPoints.LOGOUT_URL, {}).pipe(finalize( () => {
-        this.userService.loggedIn = false;
-        this.router.navigateByUrl('/login');
-    })).subscribe();
+
+  constructor(private userService: UserService, private router: Router, private http: HttpClient) {
   }
 }

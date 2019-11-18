@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { HttpClient }from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthenticationUser } from '../model/authenticationuser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -39,18 +38,9 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.form.valid) {
       this.userService.login(this.form.value).subscribe(res => {
-        debugger
-        if (this.userService.loggedIn) {
-          this.userService.getUser().subscribe(res => {
-            let array = res['roles'];
-            let roles: Array<string> = [];
-            for (let i = 0; i < array.length; i++) {
-              roles[i] = array[i]['authority'];
-            }
-            this.userService.user = new AuthenticationUser(res['id'], res['username'], roles);
-            //let url = this.userService.urlToNavigayte ? this.userService.urlToNavigayte : '/home';
-            this.router.navigate(['/home']);
-          });
+        if (this.userService.isLogged) {
+          this.userService.getUser();
+          this.router.navigate(['/home']);
         }
       });
     }

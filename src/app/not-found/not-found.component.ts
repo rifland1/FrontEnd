@@ -9,7 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class NotFoundComponent implements OnInit {
 
   constructor(private router: Router, private _aRoute: ActivatedRoute) {
-    console.log(this.router.url);
 
   }
 

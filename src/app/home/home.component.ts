@@ -1,49 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import  { Router  } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationUser } from '../model/authenticationuser';
-import { HasRoleDirective } from '../directives/has-role.directive';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-  user: AuthenticationUser;
-  title: string;
+    user: AuthenticationUser;
+    title: string;
 
-  constructor(private userService: UserService, private router: Router) {
-  }
-
-  ngOnInit() {
-    this.user = this.userService.user;
-    if (this.user) {
-      this.title = "Bienvenue " + this.user.username;
+    constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
+        this.user = this.userService.currentUserValue();
+        this.title = this.user ? "Bienvenue " + this.user.username : "Bienvenue !";
     }
-    else {
-      this.title = "Bienvenue !";
+
+    ngOnInit() {
     }
-  }
 
-  login() {
-    this.userService.urlToNavigayte = "/home";
-    this.router.navigate(['/login']);
-  }
+    login() {
+        this.router.navigate(['/login']);
+    }
 
-  logout() {
-    this.router.navigate(['/logout']);
-  }
+    logout() {
+        this.userService.logout();
+        this.user = null;
+    }
 
-  goToAdmin() {
-    this.router.navigate(['/admin']);
-  }
+    goToAdmin() {
+        this.router.navigate(['/admin']);
+    }
 
-  goToUser() {
-    this.router.navigate(['/user']);
-  }
+    goToUser() {
+        this.router.navigate(['/user']);
+    }
 
 }
+

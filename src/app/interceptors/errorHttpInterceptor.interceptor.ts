@@ -1,15 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpInterceptor,
-  HttpRequest,
-  HttpResponse,
-  HttpHandler,
-  HttpEvent,
-  HttpErrorResponse
-} from '@angular/common/http';
-
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, } from '@angular/common/http';
 import { Router } from '@angular/router';
-
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
@@ -24,13 +15,12 @@ export class ErrorHttpInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401) {
-        this.userService.logout();
         this.router.navigate(['/login']);
       }
-      if(err.status === 404) {
+      if (err.status === 404) {
         this.router.navigate(['/not-found']);
       }
-      if(err.status === 403) {
+      if (err.status === 403) {
         this.router.navigate(['/access-denied']);
       }
       return throwError(err);

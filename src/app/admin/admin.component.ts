@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AdminService } from './admin.service';
-import  { AuthenticationUser } from '../model/authenticationuser';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AuthenticationUser } from '../model/authenticationuser';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserService } from '../services/user.service';
 
 
 export interface DialogData {
@@ -22,7 +23,7 @@ export class AdminComponent implements OnInit {
   helloAdmin: any;
   listUsers: Array<AuthenticationUser> = [];
 
-  constructor(private adminService: AdminService, public dialog: MatDialog) {
+  constructor(private userService: UserService, private adminService: AdminService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog) {
   }
 
 
@@ -53,5 +54,5 @@ export class AdminComponent implements OnInit {
   templateUrl: 'dialog-data-user-dialog.html',
 })
 export class DialogDataUserDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 }

@@ -9,12 +9,14 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  isAuthenticated: boolean;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    console.log("header");
-    this.isAuthenticated = this.userService.loggedIn;
+  }
+
+
+  logout() {
+    this.userService.logout();
   }
 
 }
