@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public translate: TranslateService) {
+  }
 
   ngOnInit() {
   }
@@ -18,5 +18,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userService.logout();
   }
+
+
 
 }

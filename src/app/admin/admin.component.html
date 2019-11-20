@@ -1,14 +1,12 @@
-<h2 *ngIf="helloAdmin">
-  {{ helloAdmin.data }}
-</h2>
+<h2 *ngIf="helloAdmin" [translate]="'app.admin.hello'">Admin</h2>
 
 
 <div *ngIf="listUsers.length == 0">
-  <button mat-raised-button color="warn" (click)="getAllUsers()">Liste Utilisateurs</button>
+  <button mat-raised-button color="warn" (click)="getAllUsers()"><span [translate]="'app.admin.users-list'">Liste Utilisateurs</span></button>
 </div>
 
 <div *ngIf="listUsers.length != 0">
-  <h2> {{ usersTitle }} </h2>
+  <h2 [translate]="'app.admin.users-title'"> Liste Utilisateurs </h2>
   <mat-nav-list role="list">
     <a mat-list-item role="listitem" *ngFor="let u of listUsers" (click)="openDialog(u)">{{ u.username }}</a>
   </mat-nav-list>

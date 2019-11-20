@@ -1,0 +1,34 @@
+{
+    "app": {
+        "app": "Angular App",
+        "title": "Angular + Spring Security App !",
+        "header": {
+            "home": "Home",
+            "admin": "Admin",
+            "user": "User",
+            "logout": "LogOut"
+        },
+        "lang": {
+            "change": "Change language"
+        },
+        "admin": {
+            "hello": "Hello, you are in admin page !",
+            "users-list": "Users List",
+            "users-title": "Users List",
+            "user-detail": "User Details",
+            "username": "Username {{ value }}",
+            "id" :"ID: {{ value }}",
+            "roles": "Roles"
+        },
+        "user": {
+            "hello": "Hello, you are in user page !"
+        },
+        "home": {
+            "title": "Welcome {{ value }} !",
+            "user-page": "User Page",
+            "admin-page": "Admin Page",
+            "logout": "LogOut",
+            "login" :"Login"
+        }
+    }
+}

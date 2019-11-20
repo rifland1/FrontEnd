@@ -28,6 +28,31 @@ body {
 .sameline li {
   list-style-type: disc; }
 
+.base {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  left: 25%; }
+
+.header {
+  height: 8%;
+  position: relative; }
+
+.body {
+  height: 80%;
+  position: relative; }
+
+.footer {
+  height: 8%;
+  position: relative;
+  margin: 0; }
+
+.pad-butt {
+  padding: 0 14px; }
+
+.spacer {
+  flex: 1 1 auto; }
+
 .mr-btn {
   margin-right: 20px !important; }
 
@@ -42,6 +67,5 @@ mat-card {
 
 .full-width-input {
   width: 100%; }
-
 
 

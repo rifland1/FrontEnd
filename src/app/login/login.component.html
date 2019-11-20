@@ -5,14 +5,14 @@
         <p>Connectez-vous !</p>
         <mat-form-field class="full-width-input">
           <input matInput placeholder="Username" formControlName="username" required>
-          <mat-icon matSuffix class="secondary-text">person</mat-icon>
+          <mat-icon matSuffix>person</mat-icon>
           <mat-error *ngIf="isFieldInvalid('username')">
             Entrez votre nom d'utilisateur
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
           <input matInput type="password" placeholder="Password" formControlName="password" required>
-          <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+          <mat-icon matSuffix>vpn_key</mat-icon>
           <mat-error *ngIf="isFieldInvalid('password')">
             Entrez votre mot de passe
           </mat-error>

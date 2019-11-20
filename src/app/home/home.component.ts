@@ -11,11 +11,11 @@ import { AuthenticationUser } from '../model/authenticationuser';
 export class HomeComponent implements OnInit {
 
     user: AuthenticationUser;
-    title: string;
+    username: string;
 
     constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
         this.user = this.userService.currentUserValue();
-        this.title = this.user ? "Bienvenue " + this.user.username : "Bienvenue !";
+        this.username = this.user ? this.user.username : '';
     }
 
     ngOnInit() {

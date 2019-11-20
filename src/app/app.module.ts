@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,9 +21,12 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HeaderComponent } from './header/header.component';
 import { BaseComponent } from './base/base.component';
+import { FooterComponent } from './footer/footer.component';
 
 
-
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -35,12 +40,20 @@ import { BaseComponent } from './base/base.component';
     AccessDeniedComponent,
     NotFoundComponent,
     HeaderComponent,
-    BaseComponent
+    BaseComponent,
+    FooterComponent
 
 
   ],
   imports: [
     BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
