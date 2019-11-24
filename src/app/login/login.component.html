@@ -1,23 +1,34 @@
-<div class="signin-content">
-  <mat-card>
+<div class="login">
+  <mat-card class="login-page">
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="login()">
-        <p>Connectez-vous !</p>
+        <div class="lang">
+          <label>
+            {{ 'app.lang.change' | translate }}
+            <select #langSelect (change)="translate.use(langSelect.value)">
+              <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+                [selected]="lang === translate.currentLang">{{ lang }}</option>
+            </select>
+          </label>
+        </div>
+        <h1 [translate]="'app.login.title'">Connectez-vous !</h1>
         <mat-form-field class="full-width-input">
-          <input matInput placeholder="Username" formControlName="username" required>
+          <input matInput placeholder="{{ 'app.login.username' | translate }}" formControlName="username" required>
           <mat-icon matSuffix>person</mat-icon>
           <mat-error *ngIf="isFieldInvalid('username')">
-            Entrez votre nom d'utilisateur
+            <span [translate]="'app.login.username-error'">Entrez votre nom d'utilisateur</span>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
-          <input matInput type="password" placeholder="Password" formControlName="password" required>
+          <input matInput type="password" placeholder="{{ 'app.login.password' | translate }}"
+            formControlName="password" required>
           <mat-icon matSuffix>vpn_key</mat-icon>
           <mat-error *ngIf="isFieldInvalid('password')">
-            Entrez votre mot de passe
+            <span [translate]="'app.login.password-error'">Entrez votre mot de passe</span>
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button mat-raised-button color="primary" type="submit" class="login-btn"><span
+            [translate]="'app.login.login'">Login</span></button>
       </form>
     </mat-card-content>
   </mat-card>

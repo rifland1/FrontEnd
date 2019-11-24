@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { HttpClient }from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   private formSubmitAttempt: boolean;
 
-  constructor(private userService: UserService, private http: HttpClient, private router: Router, private fb: FormBuilder) {
+  constructor(private userService: UserService, private http: HttpClient, private router: Router, private fb: FormBuilder, public translate: TranslateService) {
   }
 
   ngOnInit() {

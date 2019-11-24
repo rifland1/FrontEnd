@@ -1,22 +1,33 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span class="flex"></span>
-      <h1 [translate]="'app.app'">Angular</h1>
-      <span class="flex"></span>
-      <div style="margin-right: auto">
-        <a mat-button [routerLink]="'/home'"> <span [translate]="'app.header.home'">Home</span> </a>
-        <a mat-button [routerLink]="'/admin'" *hasRole="'ADMIN'"> <span [translate]="'app.header.admin'" >Admin</span> </a>
-        <a mat-button [routerLink]="'/user'"> <span [translate]="'app.header.user'">User</span> </a>
-        <a mat-button (click)="logout()"> <span [translate]="'app.header.logout'">Logout</span> </a>
+<mat-toolbar class="bg-mat-toolbar">
+  <mat-toolbar-row fxLayout="row">
+    <div fxFlex="60" fxFlexOffset="15" fxLayout="row">
+      <div class="txt-header" fxLayout="row">
+        <div><a mat-button [routerLink]="'/home'"><img class="img" src="assets/images/logo-orange.png"></a></div>
+        <div class="div-pos"><a mat-button [routerLink]="'/home'" class="header-btn" matTooltip="{{ 'app.tooltip-header.home' | translate }}" matTooltipPosition="right"> <span class="span-pos"
+              [translate]="'app.header.home'">Home</span> </a></div>
+        <div><a mat-button [routerLink]="'/admin'" class="header-btn" *hasRole="'ADMIN'" matTooltip="{{ 'app.tooltip-header.admin' | translate }}" matTooltipPosition="right"> <span class="span-pos"
+              [translate]="'app.header.admin'">Admin</span></a></div>
+        <div><a mat-button [routerLink]="'/user'" class="header-btn" matTooltip="{{ 'app.tooltip-header.user' | translate }}" matTooltipPosition="right"> <span class="span-pos" [translate]="'app.header.user'">User</span>
+          </a></div>
+        <div><a mat-button (click)="logout()" class="header-btn" matTooltip="{{ 'app.tooltip-header.logout' | translate }}" matTooltipPosition="right"> <span class="span-pos" [translate]="'app.header.logout'">Logout</span>
+          </a></div>
       </div>
-      <span class="spacer"></span>
-      <div class="pad-butt">
-        <label>
-          {{ 'app.lang.change' | translate }}
-          <select #langSelect (change)="translate.use(langSelect.value)">
-            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
-          </select>
-        </label>
+    </div>
+    <div fxFlex="20" fxLayout="row">
+      <div class="txt-header icon-person-pos">
+        <button mat-button matTooltip="{{ username }}" class="header-btn" matTooltipPosition="right">
+          <mat-icon>person</mat-icon>
+        </button>
       </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+      <div class="txt-header lang-pos">
+        <button matTooltip="{{ 'app.tooltip-header.lang' |translate}}" class="header-btn" matTooltipPosition="right" mat-button
+          [matMenuTriggerFor]="menu">{{ translate.currentLang | uppercase}}</button>
+        <mat-menu #menu="matMenu">
+          <button *ngFor="let lang of translate.getLangs()" (click)="translate.use(lang)"
+            mat-menu-item>{{ lang | uppercase }}</button>
+        </mat-menu>
+
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

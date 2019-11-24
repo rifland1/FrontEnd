@@ -5,3 +5,41 @@
 .spacer {
     flex: 1 1 auto;
   }
+
+  .txt-header {
+    color: #fff;
+  }
+
+  .img {
+    width: 50px;
+    border: 0;
+    margin-right: 22px!important;
+  }
+
+  .tlb-row {
+    margin: 0 auto !important;
+    max-width: 1440px;
+  }
+
+  .div-pos {
+    position: relative;
+  }
+
+  .span-pos {
+    position: absolute; 
+  }
+
+  .icon-person-pos {
+    position: absolute; 
+    padding: 0;
+  }
+
+  .lang-pos {
+    position: absolute;
+    margin-left: 40px;
+    padding: 3px;
+  }
+
+  .header-btn:hover {
+    color: orange
+  }

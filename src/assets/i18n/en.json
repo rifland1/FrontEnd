@@ -17,8 +17,9 @@
             "users-title": "Users List",
             "user-detail": "User Details",
             "username": "Username {{ value }}",
-            "id" :"ID: {{ value }}",
-            "roles": "Roles"
+            "id": "ID: {{ value }}",
+            "roles": "Roles",
+            "add-user": "Add User"
         },
         "user": {
             "hello": "Hello, you are in user page !"
@@ -28,7 +29,23 @@
             "user-page": "User Page",
             "admin-page": "Admin Page",
             "logout": "LogOut",
-            "login" :"Login"
+            "login": "Login"
+        },
+        "login": {
+            "title": "I connect",
+            "username": "Username",
+            "password": "Password",
+            "login": "Login",
+            "username-error": "Enter your username!",
+            "password-error": "Enter your password!"
+        },
+        "tooltip-header": {
+            "home": "go to home",
+            "admin": "go to admin",
+            "user": "go to user",
+            "logout": "sign up",
+            "profil": "profil",
+            "lang": "change language"
         }
     }
 }

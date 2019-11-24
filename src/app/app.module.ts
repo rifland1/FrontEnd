@@ -12,7 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatListModule, MatDialogModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatButtonModule, MatInputModule, MatFormFieldModule, MatCardModule, MatListModule, MatDialogModule, MatSelectModule, MatMenuModule } from '@angular/material';
+import { FlexLayoutModule} from '@angular/flex-layout';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 import { ErrorHttpInterceptor } from '../app/interceptors/errorHttpInterceptor.interceptor';
 import { UserComponent } from './user/user.component';
 import { AdminComponent, DialogDataUserDialog } from './admin/admin.component';
@@ -67,7 +70,11 @@ export function createTranslateLoader(http: HttpClient) {
     MatInputModule,
     MatCardModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    FlexLayoutModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatTooltipModule
   ],
   providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: ErrorHttpInterceptor, multi: true }],
   bootstrap: [AppComponent],

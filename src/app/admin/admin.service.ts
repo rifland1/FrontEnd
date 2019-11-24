@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EndPoints } from '../consts/EndPoints';
+import { AuthenticationUser } from '../model/authenticationuser';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private http: HttpClient) {
+  listUsers: Array<AuthenticationUser> = [];
 
+  constructor(private http: HttpClient) {
   }
 
   getAdminHello() {
@@ -16,6 +19,6 @@ export class AdminService {
   }
 
   getAllUsers() {
-    return this.http.get(EndPoints.ALL_USERS_URL);
+    return  this.listUsers.length < 1 ? this.http.get(EndPoints.ALL_USERS_URL) : of(this.listUsers);
   }
 }

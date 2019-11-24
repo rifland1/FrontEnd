@@ -22,6 +22,8 @@ export class AdminComponent implements OnInit {
   usersTitle: string = "Liste des Utilisateurs";
   helloAdmin: any;
   listUsers: Array<AuthenticationUser> = [];
+  showUsers: boolean = false;
+  showFormAddUser: boolean = false
 
   constructor(private userService: UserService, private adminService: AdminService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog) {
   }
@@ -36,7 +38,21 @@ export class AdminComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.adminService.getAllUsers().subscribe((res: AuthenticationUser[]) => this.listUsers = res);
+    if (this.adminService.listUsers.length < 1) {
+      this.adminService.getAllUsers().subscribe((res: AuthenticationUser[]) => {
+        this.adminService.listUsers = res;
+        this.listUsers = res;
+      })
+    } else {
+      this.listUsers = this.adminService.listUsers;
+    }
+    this.showUsers = true;
+    this.showFormAddUser = false;
+  }
+
+  AddUser() {
+    this.showFormAddUser = true;
+    this.showUsers = false;
   }
 
   openDialog(u: AuthenticationUser) {

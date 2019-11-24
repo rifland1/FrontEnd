@@ -1,13 +1,24 @@
-<h2 *ngIf="helloAdmin" [translate]="'app.admin.hello'">Admin</h2>
+<div>
+  <h2 *ngIf="helloAdmin" [translate]="'app.admin.hello'">Admin</h2>
+  <div fxLayout=row>
+    <div>
+      <button mat-raised-button color="primary" (click)="getAllUsers()"><span [translate]="'app.admin.users-list'">Liste
+          Utilisateurs</span></button>
+    </div>
+    <div fxFlex="15" fxFlexOffset="3">
+      <button mat-raised-button color="warn" (click)="AddUser()"><span [translate]="'app.admin.add-user'">Ajouter
+          Utilisateur</span></button>
+    </div>
+  </div>
 
+  <div *ngIf="listUsers.length != 0 && showUsers">
+    <h2 [translate]="'app.admin.users-title'"> Liste Utilisateurs </h2>
+    <mat-nav-list role="list">
+      <a mat-list-item role="listitem" *ngFor="let u of listUsers" (click)="openDialog(u)">{{ u.username }}</a>
+    </mat-nav-list>
+  </div>
 
-<div *ngIf="listUsers.length == 0">
-  <button mat-raised-button color="warn" (click)="getAllUsers()"><span [translate]="'app.admin.users-list'">Liste Utilisateurs</span></button>
-</div>
+  <div *ngIf="showFormAddUser">
 
-<div *ngIf="listUsers.length != 0">
-  <h2 [translate]="'app.admin.users-title'"> Liste Utilisateurs </h2>
-  <mat-nav-list role="list">
-    <a mat-list-item role="listitem" *ngFor="let u of listUsers" (click)="openDialog(u)">{{ u.username }}</a>
-  </mat-nav-list>
+  </div>
 </div>

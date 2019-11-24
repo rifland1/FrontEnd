@@ -1,12 +1,29 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <div>
+      <h1>Bienvenue, vous êtes en page home </h1>
+    </div>
+    <div fxLayout="row">
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Recherche...">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="user" fxLayout="row">
+    <button fxFlex="15" mat-raised-button color="primary" *hasRole="'ADMIN'" (click)="goToAdmin()"><span
+        [translate]="'app.home.admin-page'">Page Admin</span></button>
+    <button fxFlex="15" fxFlexOffset="3" mat-raised-button color="accent" (click)="goToUser()"><span
+        [translate]="'app.home.user-page'">Page
+        User</span></button>
+    <button fxFlex="15" fxFlexOffset="3" mat-raised-button color="warn" (click)="logout()"><span
+        [translate]="'app.home.logout'">Logout</span></button>
+  </div>
 
-<h2 [translate]="'app.home.title'" [translateParams]="{value: username}"> Bienvenue {{ username }}!</h2>
+  <div *ngIf="!user">
+    <button mat-raised-button color="warn" (click)="login()"><span [translate]="'app.home.login'">Login</span></button>
+  </div>
 
-<div *ngIf="user" class="mr-btn">
-  <button mat-raised-button color="primary" *hasRole="'ADMIN'" (click)="goToAdmin()"><span [translate]="'app.home.admin-page'">Page Admin</span></button>
-  <button mat-raised-button color="accent" (click)="goToUser()"><span [translate]="'app.home.user-page'">Page User</span></button>
-  <button mat-raised-button color="warn" (click)="logout()"><span [translate]="'app.home.logout'">Logout</span></button>
-</div>
-
-<div *ngIf="!user">
-  <button mat-raised-button color="warn" (click)="login()"><span [translate]="'app.home.login'">Login</span></button>
 </div>

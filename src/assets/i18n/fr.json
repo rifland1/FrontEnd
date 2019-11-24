@@ -18,7 +18,8 @@
             "user-detail": "Détails Utilisateur",
             "username": "Nom Utilisateur: {{ value }}",
             "id" :"ID: {{ value }}",
-            "roles": "Rôles"
+            "roles": "Rôles",
+            "add-user": "Ajouter Utilisateur"
         },
         "user": {
             "hello": "Bienvenue, vous êtes bien en page User"
@@ -29,6 +30,22 @@
             "admin-page": "Page Admin",
             "logout": "Déconnecter",
             "login": "Se Connecter"
+        },
+        "login": {
+            "title": "Je me connecte",
+            "username": "Nom Utilisateur",
+            "password": "Mot de Passe",
+            "login": "Se Connecter",
+            "username-error": "Entrer votre nom d'utilisateur!",
+            "password-error": "Entrer votre mot de passe!"
+        },
+        "tooltip-header": {
+            "home": "Aller à l'acceuil",
+            "admin": "Aller à la page Admin",
+            "user": "Aller à la page user",
+            "logout": "Se déconnecter",
+            "profil": "profil",
+            "lang": "changer langue"
         }
     }
 }
